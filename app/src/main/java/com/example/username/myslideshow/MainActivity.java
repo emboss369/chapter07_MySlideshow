@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
@@ -70,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
         mMediaPlayer.setLooping(true);
 
     }
-    public void onAnimationButtonTapped(View view) {
+    public void onAnimationButtonTapped(final View view) {
         // 5回転します
-        view.animate().setDuration(3000).rotation(360.0f * 5.0f);
+        //view.animate().setDuration(3000).rotation(360.0f * 5.0f);
         // x座標200の位置に移動
         //view.animate().setDuration(3000).x(200.0f);
         // y座標200の位置に移動
@@ -82,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
         // 透明にします。
         //view.animate().setDuration(1000).alpha(0.0f);
         // ボールが跳ねるような効果を加えます
-        //view.animate().setDuration(1000).setInterpolator(new BounceInterpolator()).y(300.0f);
+        float y = view.getY() + 100;
+        view.animate().setDuration(1000).setInterpolator(new BounceInterpolator()).y(y);
     }
 
     private void movePosition(int move) {
