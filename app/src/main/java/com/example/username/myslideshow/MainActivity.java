@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.BounceInterpolator;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.ViewSwitcher;
@@ -69,20 +68,21 @@ public class MainActivity extends AppCompatActivity {
 
         mMediaPlayer =  MediaPlayer.create(this, R.raw.getdown);
         mMediaPlayer.setLooping(true);
+
     }
     public void onAnimationButtonTapped(View view) {
         // 5回転します
-        //view.animate().setDuration(3000).rotation(360.0f * 5.0f);
+        view.animate().setDuration(3000).rotation(360.0f * 5.0f);
         // x座標200の位置に移動
         //view.animate().setDuration(3000).x(200.0f);
         // y座標200の位置に移動
         //view.animate().setDuration(3000).y(200.0f);
         // 2.5倍のサイズにします
         //view.animate().setDuration(3000).scaleX(2.5f).scaleY(2.5f);
-        // 透過度を50%に変更します
+        // 透明にします。
         //view.animate().setDuration(1000).alpha(0.0f);
         // ボールが跳ねるような効果を加えます
-        view.animate().setDuration(1000).setInterpolator(new BounceInterpolator()).y(300.0f);
+        //view.animate().setDuration(1000).setInterpolator(new BounceInterpolator()).y(300.0f);
     }
 
     private void movePosition(int move) {
@@ -99,11 +99,13 @@ public class MainActivity extends AppCompatActivity {
         mImageSwitcher.setInAnimation(this,android.R.anim.fade_in);
         mImageSwitcher.setOutAnimation(this, android.R.anim.fade_out);
         movePosition(-1);
+        findViewById(R.id.imageView).animate().setDuration(1000).alpha(0.0f);
     }
     public void onNextButtonTapped(View view) {
         mImageSwitcher.setInAnimation(this,android.R.anim.slide_in_left);
-        mImageSwitcher.setOutAnimation(this,android.R.anim.slide_out_right);
+        mImageSwitcher.setOutAnimation(this, android.R.anim.slide_out_right);
         movePosition(1);
+        findViewById(R.id.imageView).animate().setDuration(1000).alpha(0.0f);
     }
     public void onSlideshowButtonTapped(View view) {
         mIsSlideshow = !mIsSlideshow;
@@ -114,7 +116,5 @@ public class MainActivity extends AppCompatActivity {
             mMediaPlayer.pause();
             mMediaPlayer.seekTo(0);
         }
-
     }
-
 }
