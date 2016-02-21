@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         mImageSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
-                ImageView imageView = new ImageView(getApplicationContext());
+                ImageView imageView = new ImageView(MainActivity.this);
                 return imageView;
             }
         });
